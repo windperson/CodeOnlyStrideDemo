@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeOnlyStrideDemo.GameApp;
+using System;
 
 namespace CodeOnlyStrideDemo.Windows
 {
@@ -6,7 +7,10 @@ namespace CodeOnlyStrideDemo.Windows
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            using (var game = new CodeOnlyGame())
+            {
+                game.Run();
+            }
         }
     }
 }
