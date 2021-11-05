@@ -27,7 +27,7 @@ namespace CodeOnlyStrideDemo.GameApp
             simpleEffect = new EffectInstance(new Effect(GraphicsDevice, SpriteEffect.Bytecode));
 
             // Load texture
-            using (FileStream stream = new("small_uv.png", FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var stream = new FileStream("small_uv.png", FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 simpleEffect.Parameters.Set(TexturingKeys.Texture0, Texture.Load(GraphicsDevice, stream));
             }
