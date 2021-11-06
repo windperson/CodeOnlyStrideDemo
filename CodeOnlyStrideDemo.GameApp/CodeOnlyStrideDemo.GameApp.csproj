@@ -8,7 +8,7 @@
     <PackageReference Include="Stride.Core" Version="4.0.1.1428" />
     <PackageReference Include="Stride.Engine" Version="4.0.1.1428" />
 
-	<PackageReference Include="Stride.Core.Assets.CompilerApp" Version="4.0.1.1428" IncludeAssets="build;buildTransitive" />
+  	<PackageReference Include="Stride.Core.Assets.CompilerApp" Version="4.0.1.1428" IncludeAssets="build;buildTransitive" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,6 +6,7 @@ using Stride.Graphics.GeometricPrimitives;
 using Stride.Rendering;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,18 +23,28 @@ namespace CodeOnlyStrideDemo.GameApp
         protected async override Task LoadContent()
         {
             await base.LoadContent();
-
-            // Prepare effect/shader
-            simpleEffect = new EffectInstance(new Effect(GraphicsDevice, SpriteEffect.Bytecode));
-
-            // Load texture
-            using (var stream = new FileStream("small_uv.png", FileMode.Open, FileAccess.Read, FileShare.Read))
+            
+            try
             {
-                simpleEffect.Parameters.Set(TexturingKeys.Texture0, Texture.Load(GraphicsDevice, stream));
-            }
+                Debug.WriteLine("Prepare teapot effect");
+                // Prepare effect/shader
+                simpleEffect = new EffectInstance(new Effect(GraphicsDevice, SpriteEffect.Bytecode));
 
-            // Initialize teapot
-            teapot = GeometricPrimitive.Teapot.New(GraphicsDevice);
+                // Load texture
+                using (var stream = new FileStream("small_uv.png", FileMode.Open, FileAccess.Read, FileShare.Read))
+                {
+                    Debug.WriteLine("Set teapot texture from uv file");
+                    simpleEffect.Parameters.Set(TexturingKeys.Texture0, Texture.Load(GraphicsDevice, stream));
+                }
+
+                // Initialize teapot
+                teapot = GeometricPrimitive.Teapot.New(GraphicsDevice);
+            }
+            catch(Exception ex)
+            {                
+                Debug.WriteLine(ex);
+            }
+            
         }
 
         protected override void Draw(GameTime gameTime)
